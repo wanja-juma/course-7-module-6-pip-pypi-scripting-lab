@@ -16,4 +16,30 @@ def generate_log(data):
 
     # STEP 4: Print a confirmation message with the filename
 
-    pass
+   # lib/generate_log.py
+    """
+    Writes log entries to a dated text file and returns the filename.
+    """
+
+    if not isinstance(data, list):
+        raise ValueError("Input must be a list")
+
+    filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
+
+    with open(filename, "w") as file:
+        for entry in data:
+            file.write(f"{entry}\n")
+
+    print(f"Log written to {filename}")
+
+    return filename
+
+
+if __name__ == "__main__":
+    sample_data = [
+        "User logged in",
+        "User updated profile",
+        "Report exported"
+    ]
+
+    generate_log(sample_data)
