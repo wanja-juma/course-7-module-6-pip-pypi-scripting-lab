@@ -1,25 +1,21 @@
 from datetime import datetime
-
+import os
 
 def generate_log(data):
-    # Validate input
+    # STEP 1: Validate input
     if not isinstance(data, list):
-        raise ValueError("Input must be a list")
+        raise ValueError("Input data must be a list.")
 
-    # Create filename
+    # STEP 2: Generate filename with today's date
     filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
 
-    # Write file
+    # STEP 3: Write log entries to file
     with open(filename, "w") as file:
         for entry in data:
             file.write(f"{entry}\n")
 
-    # Required confirmation message (tests expect print)
+    # STEP 4: Print confirmation message
     print(f"Log written to {filename}")
 
+    # Return filename for testing
     return filename
-
-
-if __name__ == "__main__":
-    sample = ["User logged in", "User updated profile"]
-    generate_log(sample)
