@@ -21,25 +21,28 @@ def generate_log(data):
     Writes log entries to a dated text file and returns the filename.
     """
 
+    """
+    Creates a log file from a list of entries and returns filename.
+    """
+
+    # Validate input
     if not isinstance(data, list):
         raise ValueError("Input must be a list")
 
+    # Create filename
     filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
 
+    # Write file
     with open(filename, "w") as file:
         for entry in data:
             file.write(f"{entry}\n")
 
+    # Required confirmation message (tests expect print)
     print(f"Log written to {filename}")
 
     return filename
 
 
 if __name__ == "__main__":
-    sample_data = [
-        "User logged in",
-        "User updated profile",
-        "Report exported"
-    ]
-
-    generate_log(sample_data)
+    sample = ["User logged in", "User updated profile"]
+    generate_log(sample)
